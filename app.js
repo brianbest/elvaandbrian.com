@@ -12,9 +12,13 @@ firebase.initializeApp(firebaseConfig);
 //firebase.analytics();
 const db = firebase.firestore();
 
-db.collection("movies").orderBy("last_watched").then((querySnapshot) => {
+db.collection("movies").orderBy("last_watched").get().then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     const movie = doc.data();
-    $('#movie-list').append(`<li>${movie.title}</li>`);
+    console.log(movie);
+    $('#movie-list').append(`<li>
+    <h4>${movie.title}</h4>
+    <p> Watched: ${moment.unix(movie.last_watched.seconds).format("D MMM YYYY")}
+    </li>`);
   });
 });
