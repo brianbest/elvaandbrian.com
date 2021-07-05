@@ -12,7 +12,7 @@ firebase.initializeApp(firebaseConfig);
 //firebase.analytics();
 const db = firebase.firestore();
 
-db.collection("movies").get().then((querySnapshot) => {
+db.collection("movies").orderBy("last_watched").then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     const movie = doc.data();
     $('#movie-list').append(`<li>${movie.title}</li>`);
