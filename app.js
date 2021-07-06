@@ -23,25 +23,18 @@ const settings = {
 db.collection("movies").orderBy("last_watched").get().then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     const movie = doc.data();
-    console.log(movie);
     settings.url = setURL(movie.imdb_id);
     $('#movie-list').append(`<li id="${movie.imdb_id}">
       <h4>${movie.title}</h4>
       <p> Watched: ${moment.unix(movie.last_watched.seconds).format("D MMM YYYY")}
       </li>`);
     $.ajax(settings).done(function (response) {
-      console.log(response);
       $(`#${movie.imdb_id}`).append(`<img src="${response.Poster}" />`)
     });
     
   });
 });
 
-
-
-$.ajax(settings).done(function (response) {
-	console.log(response);
-});
 
 function setURL(imdbId) {
   return `https://www.omdbapi.com/?i=${imdbId}&apikey=${openAPIHole}`
