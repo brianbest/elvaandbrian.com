@@ -44,5 +44,5 @@ $.ajax(settings).done(function (response) {
 });
 
 function setURL(imdbId) {
-  return `http://www.omdbapi.com/?i=${imdbId}&apikey=${openAPIHole}`
+  return `https://www.omdbapi.com/?i=${imdbId}&apikey=${openAPIHole}`
 }
